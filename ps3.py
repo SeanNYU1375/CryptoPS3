@@ -6,7 +6,9 @@ import json
 from math import gcd
 
 # Helper Functions
-def return_e(p, q):
+def return_e(inDat):
+    p = inDat["p"]
+    q = inDat["q"]
     eList = []
     # Using notation from RSA module from NetSec
     phi = (p-1)*(q-1)
@@ -22,6 +24,12 @@ def return_lcm(p, q):
     # Calculate lcm using gcd
     lcm = (p*q)//gcd(p,q)
     return lcm
+
+def return_d(inDat, e):
+    lcm = return_lcm((inDat["p"]-1),(inDat["q"]-1))
+    for d in range(1, 10000):
+        if ((d * e) % lcm) == 1:
+            return d
 
 # Problem 1
 def problem1(inDat):
@@ -47,18 +55,16 @@ def problem1(inDat):
 
 # Problem 2
 def problem2(inDat):
-    dictOut["problem 2"] = return_e(inDat["p"],inDat["q"])[0]
+    dictOut["problem 2"] = return_e(inDat)[0]
     return 
 
 # Problem 3
 def problem3(inDat):
     # use help for lowest e
-    e = return_e(inDat["p"],inDat["q"])[0]
-    lcm = return_lcm((inDat["p"]-1),(inDat["q"]-1))
-    for d in range(1, 10000):
-        if ((d * e) % lcm) == 1:
-            dictOut["problem 3"] = d
-            return
+    e = return_e(inDat)[0]
+    d = return_d(inDat, e)
+    dictOut["problem 3"] = d
+    return
 
 # Problem 4
 def problem4(inDat):
@@ -67,12 +73,11 @@ def problem4(inDat):
 
 # Problem 5
 def problem5(inDat):
-    return 0
-
-
-# read from stdin
-#assignmentIn = sys.stdin
-#inputJSON = json.load(assignmentIn)
+    e = return_e(inDat)[0]
+    n = inDat["p"] * inDat["q"]
+    d = return_d(inDat, e)
+    dictOut["problem 5"] = (inDat["y"] ** d) % n 
+    return
 
 # Read from file
 input_test = open("example-input.json","r")
