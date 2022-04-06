@@ -66,12 +66,8 @@ def problem5(inDat):
 
 
 # read from stdin
-#assignmentIn = sys.stdin
-#inputJSON = json.load(assignmentIn)
-
-# Read from file
-input_test = open("example-input.json","r")
-inputJSON = json.load(input_test)
+assignmentIn = sys.stdin
+inputJSON = json.load(assignmentIn)
 
 dictOut = {
     "problem 1" : [],
