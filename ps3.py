@@ -5,6 +5,22 @@
 import json
 from math import gcd
 
+from urllib3 import Retry
+
+# Helper Functions
+def return_e(p, q):
+    eList = []
+    # Using notation from RSA module from NetSec
+    phi = (p-1)*(q-1)
+    for e in range(2, phi):
+    # Check for greatest common denominator/ highest common factor
+    # If the result is one then i is prime
+    # Break on first value (per assignment)
+        if gcd(e, phi) == 1:
+            eList.append(e)
+    return eList
+
+
 # Problem 1
 def problem1(inDat):
     prob1_res = []
@@ -32,20 +48,14 @@ def problem2(inDat):
     p = inDat["p"]
     q = inDat["q"]
 
-    # Using notation from RSA module from NetSec
-    phi = (p-1)*(q-1)
-
-    for e in range(2, phi):
-        # Check for greatest common denominator/ highest common factor
-        # If the result is one then i is prime
-        # Break on first value (per assignment)
-        if gcd(e, phi) == 1:
-            dictOut["problem 2"] = e
-            break
-
+    dictOut["problem 2"] = return_e(inDat["p"],inDat["q"])[0]
     return 
+
 # Problem 3
 def problem3(inDat):
+    p = inDat["p"]
+    q = inDat["q"]
+
     return 0
 
 # Problem 4
