@@ -20,6 +20,10 @@ def return_e(p, q):
             eList.append(e)
     return eList
 
+def return_lcm(p, q):
+    # Calculate lcm using gcd
+    lcm = (p*q)//gcd(p,q)
+    return lcm
 
 # Problem 1
 def problem1(inDat):
@@ -49,13 +53,16 @@ def problem2(inDat):
     return 
 
 # Problem 3
+# Problem 3
 def problem3(inDat):
     # use help for lowest e
     e = return_e(inDat["p"],inDat["q"])[0]
-    phi = (inDat["p"]-1)*(inDat["q"]-1)
-    dictOut["problem 3"] = pow(e, -1, phi)
-    return
-
+    lcm = return_lcm((inDat["p"]-1),(inDat["q"]-1))
+    for d in range(1, 10000):
+        if ((d * e) % lcm) == 1:
+            dictOut["problem 3"] = d
+            return
+            
 # Problem 4
 def problem4(inDat):
     return 0
