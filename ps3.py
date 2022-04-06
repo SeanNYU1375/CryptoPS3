@@ -3,25 +3,57 @@
 # Sean Williams 
 # 04-05-2022
 import json
+from math import gcd
 
 # Problem 1
-def problem1():
-    return []
+def problem1(inDat):
+    prob1_res = []
+    # Loop through input list
+    numList = inDat["nums"]
+    for i in numList:
+        # Check each number for primality
+        if i > 1:
+            # Only need to check for i/2+1
+            # Flag to pass to prime number append
+            flag = True
+            for j in range(2, int(i/2)+1):
+                # No remainder = not prime
+                if(i % j) == 0:
+                    prob1_res.append(False)
+                    flag = False
+                    break
+            if(flag):   
+                prob1_res.append(True)   
+    dictOut["problem 1"] = prob1_res
+    return
 
 # Problem 2
-def problem2():
-    return 0
+def problem2(inDat):
+    p = inDat["p"]
+    q = inDat["q"]
 
+    # Using notation from RSA module from NetSec
+    phi = (p-1)*(q-1)
+
+    for e in range(2, phi):
+        # Check for greatest common denominator/ highest common factor
+        # If the result is one then i is prime
+        # Break on first value (per assignment)
+        if gcd(e, phi) == 1:
+            dictOut["problem 2"] = e
+            break
+
+    return 
 # Problem 3
-def problem3():
+def problem3(inDat):
     return 0
 
 # Problem 4
-def problem4():
+def problem4(inDat):
     return 0
 
 # Problem 5
-def problem5():
+def problem5(inDat):
     return 0
 
 
