@@ -5,8 +5,6 @@
 import json
 from math import gcd
 
-from urllib3 import Retry
-
 # Helper Functions
 def return_e(p, q):
     eList = []
@@ -53,7 +51,6 @@ def problem2(inDat):
     return 
 
 # Problem 3
-# Problem 3
 def problem3(inDat):
     # use help for lowest e
     e = return_e(inDat["p"],inDat["q"])[0]
@@ -62,10 +59,11 @@ def problem3(inDat):
         if ((d * e) % lcm) == 1:
             dictOut["problem 3"] = d
             return
-            
+
 # Problem 4
 def problem4(inDat):
-    return 0
+    dictOut["problem 4"] = (inDat["x"] ** inDat["e"]) % inDat["n"]
+    return 
 
 # Problem 5
 def problem5(inDat):

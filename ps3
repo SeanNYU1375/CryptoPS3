@@ -65,7 +65,8 @@ def problem3(inDat):
 
 # Problem 4
 def problem4(inDat):
-    return 0
+    dictOut["problem 4"] = (inDat["x"] ** inDat["e"]) % inDat["n"]
+    return 
 
 # Problem 5
 def problem5(inDat):
