@@ -45,9 +45,6 @@ def problem1(inDat):
 
 # Problem 2
 def problem2(inDat):
-    p = inDat["p"]
-    q = inDat["q"]
-
     dictOut["problem 2"] = return_e(inDat["p"],inDat["q"])[0]
     return 
 
